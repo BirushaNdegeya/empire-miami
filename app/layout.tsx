@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Empire de Miami",
-  description: "Nous Faisons votre entreprise la meilleure",
+  description: "Découvrez les solutions modernes d'impression",
 };
 
 export default function RootLayout({

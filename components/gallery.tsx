@@ -19,10 +19,11 @@ export function Gallery() {
       <div className="container mx-auto px-6 md:px-12 text-center">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-          Our Gallery
+          Notre Galerie
         </h2>
         <p className="text-gray-600 mt-4">
-          Explore our collection of breathtaking moments and experiences.
+          Découvrez notre collection de moments et d’expériences à couper le
+          souffle.
         </p>
 
         {/* Image Grid */}
