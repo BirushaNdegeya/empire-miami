@@ -3,8 +3,12 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
+import { Mail, Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export function Contact() {
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,11 +21,62 @@ export function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Add your form submission logic here (e.g., send the data to an API or email service).
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", message: "" });
+
+    try {
+      setIsLoading(true);
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: [process.env.NEXT_PUBLIC_EMAIL_TO],
+          cc: [""],
+          bcc: [process.env.NEXT_PUBLIC_EMAIL_BCC],
+          message: {
+            subject: `YOUR SUBJECT`,
+            text: "YOUR TEXT",
+            html: `
+               <html>
+                  <head></head>
+                  <body>
+                     <p>Hello user</p>
+                     <p><b>Full Name:</b> ${formData.name}</p>
+                     <p><b>Email:</b> ${formData.email}</p>
+                     <p><b>Message:</b> ${formData.message}</p>
+                     <br>
+                     <p>Thank you & Regards,<br><b>Team</b></p>
+                  </body>
+               </html>`,
+          },
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        toast({
+          title: "Erreur lors de l'envoi de l'email.",
+          description: result.message,
+        });
+        return;
+      }
+      toast({
+        title: "Message envoyé avec succès.",
+        description: result.message,
+      });
+      // alert(result.message); // You can also add route instead of alert  route.push() add you own page.
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error: any) {
+      toast({
+        title: "Erreur lors de l'envoi de l'email.",
+        description: error.message,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+
+    // console.log("Form submitted:", formData);
   };
 
   return (
@@ -41,19 +96,49 @@ export function Contact() {
         <div className="mt-12 max-w-3xl mx-auto bg-white p-8 shadow-lg border border-border rounded-lg">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <Input type="text" placeholder="Nom" />
+              <Input
+                name="name"
+                type="text"
+                placeholder="Nom"
+                onChange={handleChange}
+                required={true}
+                value={formData.name}
+              />
             </div>
 
             <div>
-              <Input type="email" placeholder="Email" />
+              <Input
+                name="email"
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                required={true}
+                value={formData.email}
+              />
             </div>
 
             <div>
-              <Textarea placeholder="Type your message here." />
+              <Textarea
+                name="message"
+                placeholder="Type your message here."
+                onChange={handleChange}
+                required={true}
+                value={formData.message}
+              />
             </div>
 
             <div>
-              <Button>Envoyez un Message</Button>
+              <Button disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="animate-spin" /> Veuillez patienter...{" "}
+                  </>
+                ) : (
+                  <>
+                    <Mail /> Envoyez un Message{" "}
+                  </>
+                )}
+              </Button>
             </div>
           </form>
         </div>

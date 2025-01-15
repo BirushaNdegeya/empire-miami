@@ -18,6 +18,8 @@ const eslintConfig = [
       "@next/next/no-page-custom-font": "off",
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
     },
   }),
 ];

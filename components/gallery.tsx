@@ -1,13 +1,12 @@
-// src/components/Gallery.tsx
 import Image from "next/image";
 
 const galleryImages = [
-  "/images/gallery1.jpg",
-  "/images/gallery2.jpg",
-  "/images/gallery3.jpg",
-  "/images/gallery4.jpg",
-  "/images/gallery5.jpg",
-  "/images/gallery6.jpg",
+  "/images/gallery-01.jpeg",
+  "/images/gallery-02.jpeg",
+  "/images/gallery-03.jpeg",
+  "/images/gallery-04.jpeg",
+  "/images/gallery-05.jpeg",
+  "/images/gallery-06.jpeg",
 ];
 
 export function Gallery() {
@@ -17,16 +16,12 @@ export function Gallery() {
       id="gallery"
     >
       <div className="container mx-auto px-6 md:px-12 text-center">
-        {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-          Notre Galerie
-        </h2>
-        <p className="text-gray-600 mt-4">
+        <h2 className="text-3xl md:text-4xl font-bold">Notre Galerie</h2>
+        <p className="text-muted-foreground mt-4">
           Découvrez notre collection de moments et d’expériences à couper le
           souffle.
         </p>
 
-        {/* Image Grid */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {galleryImages.map((image, index) => (
             <div
@@ -42,7 +37,7 @@ export function Gallery() {
                 className="object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white font-medium">View More</p>
+                <p className="text-background font-medium">Contactez-Nous</p>
               </div>
             </div>
           ))}

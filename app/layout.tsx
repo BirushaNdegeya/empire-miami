@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-inter-sans",
   subsets: ["latin"],
 });
 
@@ -23,7 +23,7 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body className={`${inter.variable} antialiased`}>
+        <body className={`${inter} antialiased`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -31,6 +31,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
