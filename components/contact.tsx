@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
-import { Mail, Loader2 } from "lucide-react";
+import { Mail, Loader2, MapPin, Phone, AtSign } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export function Contact() {
@@ -23,7 +23,6 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here (e.g., send the data to an API or email service).
 
     try {
       setIsLoading(true);
@@ -35,13 +34,13 @@ export function Contact() {
           cc: [""],
           bcc: [process.env.NEXT_PUBLIC_EMAIL_BCC],
           message: {
-            subject: `YOUR SUBJECT`,
-            text: "YOUR TEXT",
+            subject: `Contact Form Submission`,
+            text: "User Message",
             html: `
                <html>
                   <head></head>
                   <body>
-                     <p>Hello user</p>
+                     <p>Hello,</p>
                      <p><b>Full Name:</b> ${formData.name}</p>
                      <p><b>Email:</b> ${formData.email}</p>
                      <p><b>Message:</b> ${formData.message}</p>
@@ -58,6 +57,7 @@ export function Contact() {
         toast({
           title: "Erreur lors de l'envoi de l'email.",
           description: result.message,
+          variant: "destructive",
         });
         return;
       }
@@ -65,18 +65,16 @@ export function Contact() {
         title: "Message envoyé avec succès.",
         description: result.message,
       });
-      // alert(result.message); // You can also add route instead of alert  route.push() add you own page.
       setFormData({ name: "", email: "", message: "" });
     } catch (error: any) {
       toast({
         title: "Erreur lors de l'envoi de l'email.",
         description: error.message,
+        variant: "destructive",
       });
     } finally {
       setIsLoading(false);
     }
-
-    // console.log("Form submitted:", formData);
   };
 
   return (
@@ -93,54 +91,88 @@ export function Contact() {
           pour toute question ou demande.
         </p>
 
-        <div className="mt-12 max-w-3xl mx-auto bg-white p-8 shadow-lg border border-border rounded-lg">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <Input
-                name="name"
-                type="text"
-                placeholder="Nom"
-                onChange={handleChange}
-                required={true}
-                value={formData.name}
-              />
-            </div>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Formulaire de contact */}
+          <div className="bg-white p-8 shadow-lg border border-border rounded-lg">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Input
+                  name="name"
+                  type="text"
+                  placeholder="Nom"
+                  onChange={handleChange}
+                  required={true}
+                  value={formData.name}
+                />
+              </div>
 
-            <div>
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email"
-                onChange={handleChange}
-                required={true}
-                value={formData.email}
-              />
-            </div>
+              <div>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  required={true}
+                  value={formData.email}
+                />
+              </div>
 
-            <div>
-              <Textarea
-                name="message"
-                placeholder="Type your message here."
-                onChange={handleChange}
-                required={true}
-                value={formData.message}
-              />
-            </div>
+              <div>
+                <Textarea
+                  name="message"
+                  placeholder="Tapez votre message ici."
+                  onChange={handleChange}
+                  required={true}
+                  value={formData.message}
+                />
+              </div>
 
-            <div>
-              <Button disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <Loader2 className="animate-spin" /> Veuillez patienter...{" "}
-                  </>
-                ) : (
-                  <>
-                    <Mail /> Envoyez un Message{" "}
-                  </>
-                )}
-              </Button>
+              <div>
+                <Button disabled={isLoading} className="w-full">
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="animate-spin mr-2" /> Veuillez
+                      patienter...
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="mr-2" /> Envoyez un Message
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          </div>
+
+          {/* Informations de l'entreprise */}
+          <div className="bg-background text-foreground p-8 shadow-lg border border-border rounded-lg">
+            <h3 className="text-2xl font-semibold mb-4">
+              Informations de Contact
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <MapPin className="mr-3 text-primary" />
+                <p>Av. du Musee/ 435/ HIMBI/ GOMA / Nord-Kivu / DRC</p>
+              </div>
+              <div className="flex items-center">
+                <Phone className="mr-3 text-primary" />
+                <p>+243 971 760 538</p>
+              </div>
+              <div className="flex items-center">
+                <AtSign className="mr-3 text-primary" />
+                <p>williammasivi@gmail.com</p>
+              </div>
+              <div className="flex items-center">
+                <Mail className="mr-3 text-primary" />
+                <p>williammasivi@gmail.com</p>
+              </div>
+              <div className="mt-4">
+                <p>
+                  <b>Horaires :</b> Lundi - Samedi, 8h - 18h
+                </p>
+              </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>

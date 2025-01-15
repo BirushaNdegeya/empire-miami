@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const galleryImages = [
-  "/images/gallery-01.jpeg",
+  "/images/gallery-01.png",
   "/images/gallery-02.jpeg",
   "/images/gallery-03.jpeg",
   "/images/gallery-04.jpeg",

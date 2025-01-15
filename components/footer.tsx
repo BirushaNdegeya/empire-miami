@@ -9,7 +9,7 @@ export function Footer() {
             <h1 className="text-2xl font-bold">
               Empire<span className="text-primary">Miami</span>
             </h1>
-            <p className="text-sm mt-2">Luxury Services Redefined</p>
+            <p className="text-sm mt-2">L'élégance au sommet du luxe.</p>
           </div>
 
           {/* Navigation Links */}
