@@ -51,28 +51,28 @@ export function Footer() {
           {/* Social Media Links */}
           <div className="flex space-x-4">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=61570557058232"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition"
             >
-              <Facebook className="fill-current" />
+              <Facebook />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/williammasivi?igsh=dDFycWQ0cW9mM3hj"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition"
             >
-              <Instagram className="fill-current" />
+              <Instagram />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://twitter.com/WMasivi54623"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition"
             >
-              <Twitter className="fill-current" />
+              <Twitter />
             </a>
           </div>
         </div>

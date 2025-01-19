@@ -1,12 +1,12 @@
 "use client";
+import { ReactNode } from 'react';
 import Image from "next/image";
-import { JSX } from "react";
 
 interface Service {
   id: number;
   title: string;
   description: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }
 
 const services: Service[] = [
@@ -124,7 +124,7 @@ export function Services() {
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map(({ id, icon, title, description }: Service) => (
-            <div key={id} className="flex justify-center">
+            <div key={id} className="flex justify-centerccc">
               <div className="bg-background text-foreground p-8 shadow-lg rounded-lg hover:shadow-2xl transition border border-border cursor-pointer">
                 <div className="flex justify-center mb-6">{icon}</div>
                 <h3 className="text-xl font-semibold">{title}</h3>

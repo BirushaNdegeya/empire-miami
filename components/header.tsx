@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AlignJustify, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Logo } from "./logo";
+import { ModeToggle } from "./mode-toggle";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -42,6 +43,7 @@ export function Header() {
           </Link>
         </nav>
 
+        <ModeToggle />
         {/* Mobile Menu Button */}
         <Button
           className="md:hidden"

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
@@ -16,12 +16,12 @@ export function Contact() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -83,17 +83,17 @@ export function Contact() {
       id="contact"
     >
       <div className="container mx-auto px-6 md:px-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center">
           Contactez-Nous
         </h2>
-        <p className="text-gray-600 mt-4 text-center">
+        <p className="text-secondary-foreground mt-4 text-center">
           Nous serions ravis de vous entendre. N'hésitez pas à nous contacter
           pour toute question ou demande.
         </p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Formulaire de contact */}
-          <div className="bg-white p-8 shadow-lg border border-border rounded-lg">
+          <div className="bg-background text-foreground p-8 shadow-lg border border-border rounded-lg">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Input
@@ -128,7 +128,7 @@ export function Contact() {
               </div>
 
               <div>
-                <Button disabled={isLoading} className="w-full">
+                <Button disabled={isLoading}>
                   {isLoading ? (
                     <>
                       <Loader2 className="animate-spin mr-2" /> Veuillez
@@ -152,7 +152,7 @@ export function Contact() {
             <div className="space-y-4">
               <div className="flex items-center">
                 <MapPin className="mr-3 text-primary" />
-                <p>Av. du Musee/ 435/ HIMBI/ GOMA / Nord-Kivu / DRC</p>
+                <p>Av. du Musee - 435 - HIMBI - GOMA - Nord-Kivu - DRC</p>
               </div>
               <div className="flex items-center">
                 <Phone className="mr-3 text-primary" />
