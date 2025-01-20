@@ -34,7 +34,7 @@ export function Gallery() {
                 layout="responsive"
                 width={600}
                 height={400}
-                className="object-cover group-hover:scale-110 transition-transform duration-300"
+                className="object-cover group-hover:scale-110 transition-transform duration-300 w-full h-full"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="text-background font-medium">Contactez-Nous</p>
